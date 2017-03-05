@@ -26,7 +26,8 @@ class _MemcachedBuffers:
 
     def values(self):
         bufnrs = self.get_bufnrs()
-        return (self.mc_client.get('buf_{}_{}'.format(nvim_id, bufnr)) for nvim_id, bufnr in bufnrs)
+        return (self.mc_client.get('buf_{}_{}'.format(nvim_id, bufnr))
+                for nvim_id, bufnr in bufnrs if nvim_id != local_nvim_id())
 
     def get_bufnrs(self):
         return self.mc_client.get('bufnrs') or set()
