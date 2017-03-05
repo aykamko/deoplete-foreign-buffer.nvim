@@ -6,7 +6,7 @@ import time
 
 from os import path as osp
 
-LOCAL_NVIM_ID = os.getenv('NVIM_LISTEN_ADDRESS')
+LOCAL_NVIM_ID = osp.split(osp.dirname(os.getenv('NVIM_LISTEN_ADDRESS')))[-1].lstrip('nvim')
 MEMCACHED_SOCK_PATH = osp.join(os.getenv('TMPDIR'), 'foreign-buffer-memcache.sock')
 CONNECT_SLEEP = 0.1
 CONNECT_RETRIES = int(10 / CONNECT_SLEEP)
